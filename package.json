@@ -1,0 +1,42 @@
+{
+  "name": "@calumk/editorjs-markdown-impex",
+  "description": "Markdown Import / Export, for EditorJS",
+  "version": "1.0.0",
+
+  "author": "Calum Knott",
+  "repository": "https://github.com/calumk/editorjs-markdown-impex",
+  "license": "MIT",
+
+  "main": "./dist/editorjs-markdown-impex.bundle.js",
+  "dependencies": {
+    "css-loader": "^5.0.0",
+    "markdown-table-prettify": "^3.6.0",
+    "remark": "^13.0.0",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-unwrap-images": "^3.0.1",
+    "require": "^2.4.20",
+    "style-loader": "^2.0.0",
+    "unified": "^10.1.2"
+    },
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development --watch",
+    "dev": "webpack-dev-server",
+    "build_yalc": "webpack --mode production && yalc push"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "2.22.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge-and-include-globally": "^2.1.26"
+  }
+
+}
