@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: {
     bundle: [
-      path.resolve(__dirname, 'src/markdown-parser.js'),
+      path.resolve(__dirname, 'src/markdown-impex.js'),
     ],
   },
   module: {

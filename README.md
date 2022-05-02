@@ -1,45 +1,36 @@
 # EditorJS Markdown Importer/Exporter
 
-A plugin which allows the user to export the EditorJS data to Markdown and import it from Markdown.
+An **opinionated** plugin which allows the user to export the EditorJS data to Markdown and import it from Markdown.
 
----
+You can try to import this page if you like!
 
-## Table of Contents
+> :red_square: This project is currently a WIP!
 
-* [About the Project](#about-the-project)
-  * [Origins](#origins)
-  * [Current](#current)
-  
-* [Theory](#theory)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Contributing](#contributing)
-* [License](#license)
-* [Acknowledgements](#acknowledgements)
+## Features 
+
+* [ ] Support for /all/ Official EditorJs Blocks
+* [x] Support for several third party Blocks
+* [x] Re-written syntax for block support
+* [ ] Configuration options for the end user
+* [x] Add readonly mode (doesnt do anything, but prevents EditorJs from throwing an error when used with readonly mode)
+
+
+## Demo
+
+> Include demo here
 
 ---
 
 
 ## About The Project
 
-### Origins
+### Legacy
 
-This project was originally written by [Stefan Mikic](https://github.com/stejul/), and hosted at https://github.com/stejul/editorjs-markdown-parser
-
-The project was last updated in December 2020, and has since been archived
+This project was originally written by [Stefan Mikic](https://github.com/stejul/), and hosted at https://github.com/stejul/editorjs-markdown-parser. That project was last updated in December 2020, and has since been archived
 
 ### Current 
 
 In early 2022, Since I also needed markdown support for a work-related project, I have forked this project, and provided some significant updates
-
-* [] Support for /all/ Official EditorJs Blocks
-* [x] Support for several third party Blocks
-* [x] Re-written syntax for block support
-* [] Configuration options for the end user
-* [] Add readonly mode (doesnt do anything, but prevents EditorJs from throwing an error)
 
 ---
 
@@ -63,7 +54,7 @@ EG:
 Markdown fenced code blocks, could be interpreted as 
 * [editor-js/code](https://github.com/editor-js/code) - Offical Code Block
 * [dev-juju/codebox](https://github.com/dev-juju/codebox) - 3rd Party Code Block
-* [didacticservices/editor-js-codeflask](https://github.com/didacticservices/editor-js-codeflask) - 3rd Party Code Block
+* [calumk/editor-js-codeflask](https://github.com/calumk/editorjs-codeflask) - 3rd Party Code Block
 
 
 Quotes, could be interpreted as 
@@ -79,6 +70,9 @@ Quotes, could be interpreted as
 This package is built with Unified, Remark, Remark-GFM and several other packages
 
 To limit the scope of this package, we will rely on the interpritation of remark, to generate the known block-types. This may make it impossible to detect certain charecteristics.
+
+This package uses the remark-directive plugin, 
+
 
 
 

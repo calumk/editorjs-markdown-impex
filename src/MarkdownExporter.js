@@ -1,14 +1,14 @@
 // Import Support for Official Blocks
 import { Exporter as Header_Exporter } from "./block_type_parsers/official/Header_Parser";
 import { Exporter as Paragraph_Exporter } from "./block_type_parsers/official/Paragraph_Parser";
-import { Exporter as List_Exporter } from "./block_type_parsers/official/List_Parser";
 import { Exporter as Delimiter_Exporter } from "./block_type_parsers/official/Delimiter_Parser";
+
+import { Exporter as List_Exporter } from "./block_type_parsers/official/List_Parser";
+import { Exporter as Code_Exporter } from "./block_type_parsers/official/Code_Parser";
+import { Exporter as Table_Exporter } from "./block_type_parsers/official/Table_Parser";
 
 import { Exporter as Image_Exporter } from "./block_type_parsers/official/Image_Parser";
 import { Exporter as Checklist_Exporter } from "./block_type_parsers/official/Checklist_Parser";
-
-import { Exporter as Code_Exporter } from "./block_type_parsers/official/Code_Parser";
-import { Exporter as Table_Exporter } from "./block_type_parsers/official/Table_Parser";
 
 // Import Support for Unofficial Blocks
 import { Exporter as Alert_Exporter } from "./block_type_parsers/unofficial/Alert_Parser";
@@ -17,9 +17,9 @@ import { Exporter as CodeFlask_Exporter } from "./block_type_parsers/unofficial/
 import { fileDownloadHandler } from "./FileHandler";
 
 /**
- * Markdown Parsing class
+ * Markdown Export class
  */
-export default class MarkdownParser {
+export default class MarkdownExporter {
 	/**
 	 * Returns true to notify the core that read-only mode is supported
 	 *

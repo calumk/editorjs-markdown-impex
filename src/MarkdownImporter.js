@@ -1,13 +1,16 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
+import remarkDirective from 'remark-directive'
 import remarkGfm from "remark-gfm";
 import remarkUnwrapImages from "remark-unwrap-images";
 
 // Import Official Block Support
 import { Importer as Header_Importer } from "./block_type_parsers/official/Header_Parser";
 import { Importer as Paragraph_Importer } from "./block_type_parsers/official/Paragraph_Parser";
-import { Importer as List_Importer } from "./block_type_parsers/official/List_Parser";
 import { Importer as Delimiter_Importer } from "./block_type_parsers/official/Delimiter_Parser";
+
+import { Importer as List_Importer } from "./block_type_parsers/official/List_Parser";
+import { Importer as NestedCheckList_Importer } from "./block_type_parsers/official/NestedCheckList_Parser";
 import { Importer as Code_Importer } from "./block_type_parsers/official/Code_Parser";
 import { Importer as Table_Importer } from "./block_type_parsers/official/Table_Parser";
 
@@ -63,6 +66,28 @@ export default class MarkdownImporter {
 		return doc;
 	}
 
+
+
+
+	_RemarkDirectivePlugin(){
+		return (tree) => {
+		  visit(tree, (node) => {
+			if (
+			  node.type === 'textDirective' ||
+			  node.type === 'leafDirective' ||
+			  node.type === 'containerDirective'
+			) {
+			  const data = node.data || (node.data = {})
+			  const hast = h(node.name, node.attributes)
+	  
+			  data.hName = hast.tagName
+			  data.hProperties = hast.properties
+			}
+		  })
+		}
+	  }
+
+
 	/**
 	 * Function which parses markdown file to JSON which correspons the the editor structure
 	 * @return Parsed markdown in JSON format
@@ -77,6 +102,8 @@ export default class MarkdownImporter {
 
 		const fileUpload = document.getElementById("file-upload");
 
+
+
 		fileUpload.onchange = (e) => {
 			const file = e.target.files[0];
 
@@ -89,9 +116,19 @@ export default class MarkdownImporter {
 				// const parsedMarkdown = remark().parse(content);
 				let parsedMarkdown = await unified()
 					.use(remarkParse)
+					.use(remarkDirective)
+					.use(this._RemarkDirectivePlugin)
 					.use(remarkGfm)
 					.use(remarkUnwrapImages)
 					.parse(content);
+
+				// console.log("++++++++++++++++++")
+				// console.log("++++++++++++++++++")
+				// console.log("++++++++++++++++++")
+				// console.log(parsedMarkdown)
+				// console.log("++++++++++++++++++")
+				// console.log("++++++++++++++++++")
+				// console.log("++++++++++++++++++")
 				// Support GFM (tables, autolinks, tasklists, strikethrough).
 				// iterating over the pared remarkjs syntax tree and executing the json parsers
 
@@ -103,7 +140,7 @@ export default class MarkdownImporter {
 						return Header_Importer(item);
 					},
 					list: (item) => {
-						return NestedList_Importer(item);
+						return NestedCheckList_Importer(item);
 					},
 					thematicBreak: (item) => {
 						return Delimiter_Importer(item);
@@ -125,7 +162,7 @@ export default class MarkdownImporter {
 				parsedMarkdown.children.forEach((item, index) => {
 					// Pass the item, to the blocktype.
 					// looks up the type in the object literals
-					console.log("=============================");
+					console.log("START =============================");
 					console.log("Attempting to Import block : ");
 					console.log(item);
 
@@ -139,7 +176,9 @@ export default class MarkdownImporter {
 						console.log("Block Not Imported!");
 					}
 
-					console.log("=============================");
+					console.log("END =============================");
+					console.log("                             ");
+					// console.log("                             ");
 
 					editorData.push(parsedBlock);
 				});
